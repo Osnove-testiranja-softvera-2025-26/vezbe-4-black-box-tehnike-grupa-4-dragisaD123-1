@@ -1,0 +1,13 @@
+Validne klase:
+
+  ULAZ             IZLAZ
+
+[0, 1500]     ->   195             Predstavnik 1200            
+[1501, 5000]  ->   295	           Predstavnik 2456
+[>5000]       ->    0              Predstavnik 456789
+
+
+Nevalidne klase:
+
+  [1<]    ->  nevalidno(0, negativni br)		Predstavnik -23456789
+karakter  ->  nevalidni (slova, specijalni znakovi)	Predstavnik !@#$%^&*(
