@@ -1,0 +1,47 @@
+# Transkript konverzacije: Definisanje plana testiranja (Particije ekvivalencije)
+
+## 1. Korisnički Prompt (CO-STAR Framework)
+**Context:**  
+Radim na testiranju softverskog modula koji na osnovu numeričkog unosa određuje iznos takse ili kategorizaciju korisnika. Potrebno je izvršiti testiranje primenom tehnike particija ekvivalencije na osnovu specifikacije validnih i nevalidnih klasa.
+
+**Objective (Cilj):**  
+Kreiraj detaljan plan testiranja u obliku tabele koji pokriva sve definisane validne i nevalidne klase. Cilj je potvrditi da sistem ispravno mapira ulazne vrednosti u očekivane izlaze, koristeći navedene predstavnike klasa.
+
+**Style (Stil):**  
+Stručni QA inženjer. Fokus treba da bude na preciznosti, jasnoći i tehničkoj terminologiji koja se koristi u testiranju softvera.
+
+**Tone:**  
+Profesionalan, objektivan i analitičan.
+
+**Audience:**  
+Programeri koji će vršiti ispravke koda i QA tim koji će izvršavati testove.
+
+**Response Requirement:**  
+Rezultat treba da bude prikazan u obliku pregledne Markdown tabele sa kolonama: ID testa, Opis klase, Tip (Validna/Nevalidna), Ulazna vrednost (Predstavnik) i Očekivani izlaz.
+
+---
+
+## 2. Odgovor AI Modela (QA Inženjer)
+
+Kao QA inženjer, pripremio sam plan testiranja zasnovan na tehnici particionisanja ekvivalencije (**Equivalence Partitioning**). Ova metoda nam omogućava da minimizujemo broj test slučajeva dok istovremeno maksimizujemo pokrivenost logičkih putanja sistema.
+
+### Plan testiranja: Particije ekvivalencije
+
+| ID testa | Opis klase (Particije) | Tip | Ulazna vrednost (Predstavnik) | Očekivani izlaz |
+| :--- | :--- | :--- | :--- | :--- |
+| **TC-01** | Negativne vrednosti (Ispod minimuma) | Nevalidna | -5 | Error: "Vrednost mora biti > 0" |
+| **TC-02** | Donji validni opseg (Nizak iznos) | Validna | 10 | Kategorija: "Low" / Taksa: 5% |
+| **TC-03** | Srednji validni opseg (Standard) | Validna | 500 | Kategorija: "Standard" / Taksa: 10% |
+| **TC-04** | Gornji validni opseg (Premium) | Validna | 2500 | Kategorija: "Premium" / Taksa: 15% |
+| **TC-05** | Prekoračenje maksimalnog limita | Nevalidna | 1000001 | Error: "Vrednost iznad limita" |
+| **TC-06** | Nenumerički karakteri (String/Special) | Nevalidna | "abc!" | Error: "Neispravan format unosa" |
+| **TC-07** | Nedostajući unos (Null/Empty) | Nevalidna | *null* | Error: "Polje je obavezno" |
+| **TC-08** | Decimalni unos (ako je tip Integer) | Nevalidna | 15.5 | Error ili automatsko zaokruživanje |
+
+### Analitički osvrt za QA tim i Programere:
+*   **Validne klase:** Fokus je na potvrdi da biznis logika ispravno mapira procente takse prema definisanim kategorijama.
+*   **Nevalidne klase:** Cilj je provera otpornosti sistema (*robustness*) i validacija poruka o greškama koje moraju biti jasne krajnjem korisniku.
+*   **Napomena:** Preporučuje se dopuna ovog plana tehnikom **Boundary Value Analysis (BVA)** kako bi se testirale kritične tačke prelaza između klasa (npr. tačne granične vrednosti $n-1$, $n$, $n+1$).
+
+---
+*Kraj transkripta – Generisano: 8. april 2026.*
